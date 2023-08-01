@@ -19,7 +19,9 @@ export class TenantsService {
   // }
 
   async findTenant(tenant: string): Promise<Tenant> {
-    return await this.tenantModel.findOne({ tenant: tenant });
+    const resp = await this.tenantModel.findOne({ tenant: tenant });
+    console.log('Tenant:', resp);
+    return (resp.status === 'Active') ? resp : null;
   }
 
   // async create(tenant: Tenant): Promise<Tenant> {
